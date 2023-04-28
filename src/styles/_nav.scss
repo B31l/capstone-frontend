@@ -1,0 +1,42 @@
+nav {
+    // float: left;
+    width: 100%;
+    height: 2.5rem;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    .nav-item {
+        height: 2.5rem;
+        line-height: 2.5rem;
+        display: flex;
+        cursor: pointer;
+        &:hover {
+            opacity: .5;
+        }
+        img {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0.5rem;
+        }
+        div {
+            height: 2.5rem;
+            line-height: 2.5rem;
+            padding: 0 1.5rem 0 0;
+            color:black;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+    .nav-wing {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.5rem;
+        position: absolute;
+        top: 15rem;
+        border: 2px solid #ccc;
+        background: white;
+
+        cursor: pointer;
+    }
+}
+
+

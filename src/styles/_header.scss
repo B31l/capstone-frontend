@@ -1,0 +1,42 @@
+header {
+    height: 4em;
+    line-height: 4rem;
+    // padding: 1rem 0;
+    .header-title {
+        float: left;
+        height: 4rem;
+        line-height: 4rem;
+        cursor: pointer;
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.header-button {
+    height: 4rem;
+    line-height: 4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.go-sign {
+    float: right;
+}
+
+.home {
+    color: #1bc628;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.sign-in {
+    color: white;
+    background: #1bc628;
+}
