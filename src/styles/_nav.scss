@@ -17,13 +17,14 @@ nav {
             height: 2.5rem;
             padding: 0.5rem;
         }
-        div {
+        .nav-link {
             height: 2.5rem;
             line-height: 2.5rem;
             padding: 0 1.5rem 0 0;
             color:black;
             font-size: 1rem;
             font-weight: bold;
+            text-decoration: none;
         }
     }
     .nav-wing {

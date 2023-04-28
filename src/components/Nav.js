@@ -3,22 +3,35 @@ import '../main.css';
 import { Link } from 'react-router-dom';
 import notes from '../assets/images/notes.png';
 import my from '../assets/images/my.png';
+import tools from '../assets/images/tools.png';
 import group from '../assets/images/group.png';
 
 export default function Nav() {
   return (
     <nav>
-      <Link to="/note" className="nav-item">
+      <div to="/note" className="nav-item">
         <img src={notes} alt="notes" />
-        <div>노트</div>
-      </Link>
-      <div className="nav-item">
-        <img src={my} alt="my" />
-        <div>마이</div>
+        <Link to="/notes" class="nav-link">
+          노트
+        </Link>
       </div>
       <div className="nav-item">
-        <img src={group} alt="group" />
-        <div>스터디</div>
+        <img src={my} alt="my" />
+        <Link to="/my" class="nav-link">
+          마이
+        </Link>
+      </div>
+      <div className="nav-item">
+        <img src={group} alt="groups" />
+        <Link to="/groups" class="nav-link">
+          그룹
+        </Link>
+      </div>
+      <div className="nav-item">
+        <img src={tools} alt="tools" />
+        <Link to="/tools" class="nav-link">
+          도구
+        </Link>
       </div>
     </nav>
   );

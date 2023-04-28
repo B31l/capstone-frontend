@@ -16,3 +16,12 @@ body {
     // outline: 2px solid #ccc;
     // border-radius: 1rem;
 }
+
+table {
+    width: 100%;
+    border: 1px solid #444444;  
+}
+th, td {
+    border: 1px solid #444444;
+    text-align: center;
+}

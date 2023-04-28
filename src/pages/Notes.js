@@ -2,10 +2,10 @@ import React from 'react';
 import '../main.css';
 import MarkdownViewer from '../components/MarkdownViewer';
 
-export default function Note() {
+export default function Notes() {
   return (
     <div>
-      <p>이것은 노트입니다.</p>
+      <p>노트를 저장할 수 있습니다.</p>
       <MarkdownViewer />
     </div>
   );
