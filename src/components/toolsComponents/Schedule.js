@@ -1,43 +1,127 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../main.css';
 
 function Schedule() {
+  const [monday, setMonday] = useState([]);
+  const [tuesday, setTuesday] = useState([]);
+  const [wednesday, setWednesday] = useState([]);
+  const [thursday, setThursday] = useState([]);
+  const [friday, setFriday] = useState([]);
+
+  const [mondayInput, setMondayInput] = useState("");
+  const [tuesdayInput, setTuesdayInput] = useState("");
+  const [wednesdayInput, setWednesdayInput] = useState("");
+  const [thursdayInput, setThursdayInput] = useState("");
+  const [fridayInput, setFridayInput] = useState("");
+
+  const handleAddMonday = () => {
+    setMonday([...monday, mondayInput]);
+    setMondayInput("");
+  };
+
+  const handleAddTuesday = () => {
+    setTuesday([...tuesday, tuesdayInput]);
+    setTuesdayInput("");
+  };
+
+  const handleAddWednesday = () => {
+    setWednesday([...wednesday, wednesdayInput]);
+    setWednesdayInput("");
+  };
+
+  const handleAddThursday = () => {
+    setThursday([...thursday, thursdayInput]);
+    setThursdayInput("");
+  };
+
+  const handleAddFriday = () => {
+    setFriday([...friday, fridayInput]);
+    setFridayInput("");
+  };
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>월</th>
-          <th>화</th>
-          <th>수</th>
-          <th>목</th>
-          <th>금</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>데이터베이스</td>
-          <td>알고리즘</td>
-          <td>정보처리기사</td>
-          <td>정보처리기사</td>
-          <td>데이터베이스</td>
-        </tr>
-        <tr>
-          <td>알고리즘</td>
-          <td>머신러닝</td>
-          <td>데이터분석</td>
-          <td>운영체제</td>
-          <td>딥러닝</td>
-        </tr>
-        <tr>
-          <td>복습</td>
-          <td>복습</td>
-          <td>복습</td>
-          <td>복습</td>
-          <td>복습</td>
-        </tr>
-      </tbody>
-    </table>
-  );
-}
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>월요일</th>
+            <th>화요일</th>
+            <th>수요일</th>
+            <th>목요일</th>
+            <th>금요일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="text"
+                value={mondayInput}
+                onChange={(e) => setMondayInput(e.target.value)}
+              />
+              <button onClick={handleAddMonday}>Add</button>
+              <ol>
+                {monday.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ol>
+            </td>
+            <td>
+              <input
+                type="text"
+                value={tuesdayInput}
+                onChange={(e) => setTuesdayInput(e.target.value)}
+              />
+              <button onClick={handleAddTuesday}>Add</button>
+              <ol>
+                {tuesday.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ol>
+            </td>
+            <td>
+              <input
+                type="text"
+                value={wednesdayInput}
+                onChange={(e) => setWednesdayInput(e.target.value)}
+              />
+              <button onClick={handleAddWednesday}>Add</button>
+              <ol>
+                {wednesday.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ol>
+            </td>
+            <td>
+              <input
+                type="text"
+                value={thursdayInput}
+                onChange={(e) => setThursdayInput(e.target.value)}
+              />
+              <button onClick={handleAddThursday}>Add</button>
+              <ol>
+                {thursday.map((item, index) => (
+                  <li key={index}>{item}</li>
+                  ))}
+                </ol>
+              </td>
+              <td>
+              <input
+                type="text"
+                value={fridayInput}
+                onChange={(e) => setFridayInput(e.target.value)}
+              />
+              <button onClick={handleAddFriday}>Add</button>
+              <ol>
+                {friday.map((item, index) => (
+                  <li key={index}>{item}</li>
+                  ))}
+                </ol>
+              </td>
+              </tr>
+              </tbody>
+              </table>
+              </div>
+  );}
 
 export default Schedule;

@@ -1,28 +1,55 @@
 import React, { useState } from 'react';
 
 function Todolist() {
-  const [todos, setTodos] = useState([
-    { id: 1, title: '정처기 1장 끝내기', completed: false },
-    { id: 2, title: '알고리즘 학습하기', completed: true },
-    { id: 3, title: 'React 공부', completed: false },
-  ]);
+  const [todos, setTodos] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
-  const handleToggle = (id) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
-    setTodos(updatedTodos);
+  const InputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const AddTodo = () => {
+    if (inputValue) {
+      setTodos([...todos, {text: inputValue, completed: false }]);
+      setInputValue("");
+    }
+  };
+
+  const DeleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+  const DoubleClickTodo = (index) => {
+    DeleteTodo(index);
+  };
+
+  const ToggleTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].completed = !newTodos[index].completed;
+    setTodos(newTodos);
   };
 
   return (
     <div class="todolist">
-      <h2>My To Do List</h2>
-      {todos.map((todo) => (
-        <div key={todo.id}>
-          <input type="checkbox" checked={todo.completed} onChange={() => handleToggle(todo.id)} />
-          <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.title}</span>
-        </div>
-      ))}
+      <h2>My To Do Lists</h2>
+      <input value={inputValue} onChange={InputChange} />
+      <button onClick={AddTodo}>추가</button>
+      <ul>
+        {todos.map((todo, index) => (
+          <li className="lists" key={index} onDoubleClick={() =>DoubleClickTodo(index)} >
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => ToggleTodo(index)}
+            />
+            <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
+              {todo.text}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
