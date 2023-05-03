@@ -1,12 +1,15 @@
 import React from 'react';
 import '../main.css';
 import MarkdownViewer from '../components/MarkdownViewer';
+import NoteList from '../components/notesComponents/NoteList';
 
 export default function Notes() {
   return (
     <div className="main">
-      <p>노트를 저장할 수 있습니다.</p>
-      <MarkdownViewer />
+      <div className="note-wrapper">
+        <NoteList />
+        <MarkdownViewer />
+      </div>
     </div>
   );
 }
