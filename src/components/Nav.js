@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../main.css';
 import { Link } from 'react-router-dom';
 import notes from '../assets/images/notes.png';
@@ -6,33 +6,54 @@ import my from '../assets/images/my.png';
 import tools from '../assets/images/tools.png';
 import group from '../assets/images/group.png';
 
+const nav_list = [
+  {
+    name: 'my',
+    title: '마이',
+    image: my,
+  },
+  {
+    name: 'notes',
+    title: '노트',
+    image: notes,
+  },
+  {
+    name: 'group',
+    title: '그룹',
+    image: group,
+  },
+  {
+    name: 'tools',
+    title: '도구',
+    image: tools,
+  },
+];
+
 export default function Nav() {
+  const [visibility, setVisibility] = useState([false, false, false, false]);
+  const onMouse = (index) => {
+    let temp = [...visibility];
+    temp.fill(false);
+    if (index !== -1) {
+      temp[index] = true;
+    }
+    setVisibility(temp);
+  };
+
   return (
     <nav>
-      <div to="/note" className="nav-item">
-        <img src={notes} alt="notes" />
-        <Link to="/notes" class="nav-link">
-          노트
-        </Link>
-      </div>
-      <div className="nav-item">
-        <img src={my} alt="my" />
-        <Link to="/my" class="nav-link">
-          마이
-        </Link>
-      </div>
-      <div className="nav-item">
-        <img src={group} alt="groups" />
-        <Link to="/groups" class="nav-link">
-          그룹
-        </Link>
-      </div>
-      <div className="nav-item">
-        <img src={tools} alt="tools" />
-        <Link to="/tools" class="nav-link">
-          도구
-        </Link>
-      </div>
+      {nav_list.map((element, index) => (
+        <div className="nav-item">
+          <Link
+            to={'/' + element.name}
+            class="nav-link"
+            onMouseOver={() => onMouse(index)}
+            onMouseOut={() => onMouse(-1)}>
+            <img src={element.image} alt="my" />
+            {visibility[index] && <span>마이</span>}
+          </Link>
+        </div>
+      ))}
     </nav>
   );
 }

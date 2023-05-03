@@ -1,28 +1,40 @@
-.markdown-viewer {
+.note-wrapper {
     display: flex;
-    width: 100%;
-    height: 40rem;
-    .textarea {
-        width: 50%;
-        height: 100%;
-        margin-right: 1rem;
-        padding: 1rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        font-family: 'Noto Sans KR', sans-serif;
-        outline: 1px soild black;
-        border-radius: 8px;
-        resize: none;
+    height: 100%;
+    .note-list {
+        width: 20rem;
+        background: white;
+        outline: 1px solid #ccc;
+        border-radius: 0.5rem;
+        margin-right: 0.5rem;
     }
-    .preview {
-        margin-top: 1rem;
-        border: 1px solid lightgray;
-        padding: 1rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        font-family: 'Noto Sans KR', sans-serif;
+    .markdown-viewer {
+        display: flex;
+        width: 100%;
+        .textarea {
+            width: 50%;
+            height: 100%;
+            margin-right: 1rem;
+            padding: 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-family: 'Noto Sans KR', sans-serif;
+            outline: 1px soild black;
+            border-radius: 8px;
+            resize: none;
+        }
+        .preview {
+            margin-top: 1rem;
+            border: 1px solid lightgray;
+            padding: 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
     }
 }
+
+
 
 .button-container {
     display: flex;
@@ -38,13 +50,3 @@
     display: none;
 }
   
-.note-wrapper {
-    display: flex;
-    .note-list {
-        width: 15rem;
-        background: white;
-        outline: 1px solid #ccc;
-        border-radius: 0.5rem;
-        margin-right: 0.5rem;
-    }
-}
