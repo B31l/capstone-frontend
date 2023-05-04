@@ -1,6 +1,17 @@
-import React, { useState } from 'react';
-import '../main.css';
-import { marked } from 'marked';
+import React, { useState } from "react";
+import { marked } from "marked";
+import "../styles/Mviewer.css"
+
+import { AiOutlineBold, AiOutlineItalic, AiOutlineUnderline, AiOutlineBgColors} from 'react-icons/ai';
+import TabKeyHandler from "./notesComponents/tabkeypress";
+import EnterKeyHandler from "./notesComponents/enterkeypress";
+import BoldKeyHandler from "./notesComponents/Bold";
+import ItalicKeyHandler from "./notesComponents/Italic";
+import UnderlineKeyHandler from "./notesComponents/Underline";
+import BackspaceKeyHandler from "./notesComponents/backspace";
+
+
+
 
 export default function MarkdownViewer() {
   const [markdownText, setMarkdownText] = useState('');
@@ -33,128 +44,90 @@ export default function MarkdownViewer() {
   const htmlResult = marked(markdownText, options);
 
   //tab키
-  const handleTabKeyPress = (e) => {
-    e.preDefault();
-    const start = e.target.selectionStart;
-    const end = e.target.selectionEnd;
-    const text = e.target.value;
-    setMarkdownText(text.substring(0, start) + '    \t' + text.substring(end));
-    e.target.selectionStart = e.target.selectionEnd = start + 1;
+  const handleTabKeyPress = (event) => {
+    TabKeyHandler(event, markdownText, setMarkdownText);
   };
 
   // 엔터키로 줄바꿈
-  const handleEnterKeyPress = (e) => {
-    e.preDefault();
-    const start = e.target.selectionStart;
-    const end = e.target.selectionEnd;
-    const text = e.target.value;
-    setMarkdownText(text.substring(0, start) + '  \n' + text.substring(end));
-    e.target.selectionStart = e.target.selectionEnd = start + 1;
+  const handleEnterKeyPress = (event) => {
+    EnterKeyHandler(event, markdownText, setMarkdownText);
   };
 
   // 굵은 글씨
-  const handleBoldKeyPress = (e) => {
-    if (e.keyCode === 66 && e.ctrlKey) {
-      e.preDefault();
-      const start = e.target.selectionStart;
-      const end = e.target.selectionEnd;
-      const text = e.target.value;
-      setMarkdownText(text.substring(0, start) + '**' + text.substring(start, end) + '**' + text.substring(end));
-      e.target.selectionStart = start + 2;
-      e.target.selectionEnd = end + 2;
-    }
+  const handleBoldKeyPress = (event) => {
+    BoldKeyHandler(event, markdownText, setMarkdownText,selection ,setSelection);
   };
 
   // 기울임 글씨
-  const handleItalicKeyPress = (e) => {
-    e.preDefault();
-    const start = e.target.selectionStart;
-    const end = e.target.selectionEnd;
-    const text = e.target.value;
-    setMarkdownText(text.substring(0, start) + '*' + text.substring(start, end) + '*' + text.substring(end));
-    e.target.selectionStart = e.target.selectionEnd = end + 2;
+  const handleItalicKeyPress = (event) => {
+    ItalicKeyHandler(event, markdownText, setMarkdownText,selection ,setSelection);
   };
 
   // 밑줄
-  const handleUnderlineKeyPress = (e) => {
-    e.preDefault();
-    const start = e.target.selectionStart;
-    const end = e.target.selectionEnd;
-    const text = e.target.value;
-    setMarkdownText(text.substring(0, start) + '<u>' + text.substring(start, end) + '</u>' + text.substring(end));
-    e.target.selectionStart = e.target.selectionEnd = start + 3;
+  const handleUnderlineKeyPress = (event) => {
+    UnderlineKeyHandler(event, markdownText, setMarkdownText,selection ,setSelection);
   };
 
   // 백스페이스로 탭, 엔터 지우기
-  const handleBackspaceKeyPress = (e) => {
-    if (e.keyCode === 8) {
-      const start = e.target.selectionStart;
-      const end = e.target.selectionEnd;
-      const text = e.target.value;
-      const beforeCursor = text.substring(0, start);
-      const afterCursor = text.substring(end);
-      const lastFourChars = beforeCursor.substring(beforeCursor.length - 4);
-      const last2Chars = beforeCursor.substring(beforeCursor.length - 1, beforeCursor.length);
-      if (lastFourChars === '    ') {
-        e.preDefault();
-        setMarkdownText(beforeCursor.substring(0, beforeCursor.length - 4) + afterCursor);
-        e.target.selectionStart = e.target.selectionEnd = start - 4;
-      }
-      if (last2Chars === '\n') {
-        setMarkdownText(beforeCursor.substring(0, beforeCursor.length - 2) + afterCursor);
-        e.target.selectionStart = e.target.selectionEnd = start - 2;
-      }
-    }
+  const handleBackspaceKeyPress = (event) => {
+    BackspaceKeyHandler(event, markdownText, setMarkdownText)
   };
 
-  // 네비게이션에서 버튼을 눌렀을 때 호출되는 함수
-  const handleAddTextButtonClick = () => {
-    // const start = selection.start;
+
+  // 색상 변경 함수
+  const handleChangecolorButtonClick = () => {
+    const start = selection.start;
     const end = selection.end;
     const text = markdownText;
-    const newText = '<span style="color: ;background-color: ;">' + text + '</span>';
+    const newText = text.substring(0, start) + '<span style="color: ;background-color: ;">' 
+                    + text.substring(start, end) 
+                    + "</span>" + text.substring(end);
     setMarkdownText(newText);
-    setSelection({ start: end + 1, end: end + 1 });
+    setSelection({start: end + 1, end: end + 1});
   };
 
   // 드래그한 선택영역의 시작점과 끝점을 state에 저장
-  const handleSelectionChange = (e) => {
-    const start = e.target.selectionStart;
-    const end = e.target.selectionEnd;
+  const handleSelectionChange = (event) => {
+    const start = event.target.selectionStart;
+    const end = event.target.selectionEnd;
     if (start !== end) {
-      setSelection({ start: start, end: end });
+      setSelection({start: start, end: end});
     }
   };
 
   return (
+    <>
+    <div className="toolbar">
+          <button className="toolbar-button" onClick={handleChangecolorButtonClick}><AiOutlineBgColors/></button>
+          <button className="toolbar-button" onClick={handleBoldKeyPress}><AiOutlineBold /></button>
+          <button className="toolbar-button" onClick={handleItalicKeyPress}><AiOutlineItalic/></button>
+          <button className="toolbar-button" onClick={handleUnderlineKeyPress}><AiOutlineUnderline/></button>
+      </div>
     <div class="markdown-viewer">
+      
       <textarea
         className="textarea"
         value={markdownText}
         onChange={handleMarkdownChange}
-        onKeyDown={(e) => {
-          if (e.code === 'DOM_VK_TAB') {
-            handleTabKeyPress(e);
-          } else if (e.code === 'DOM_VK_ENTER') {
-            handleEnterKeyPress(e);
-          } else if (e.ctrlKey && e.code === 'DOM_VK_B') {
-            handleBoldKeyPress(e);
-          } else if (e.ctrlKey && e.code === 'DOM_VK_I') {
-            handleItalicKeyPress(e);
-          } else if (e.ctrlKey && e.code === 'DOM_VK_U') {
-            handleUnderlineKeyPress(e);
-          } else if (e.code === 'DOM_VK_BACK_SPACE') {
-            handleBackspaceKeyPress(e);
+        onKeyDown={(event) => {
+          if (event.keyCode === 9) {
+            handleTabKeyPress(event);
+          } else if (event.keyCode === 13) {
+            handleEnterKeyPress(event);
+          } else if(event.ctrlKey && event.keyCode === 66){
+            handleBoldKeyPress(event);
+          } else if(event.ctrlKey && event.keyCode === 73){
+            handleItalicKeyPress(event);
+          } else if (event.ctrlKey && event.keyCode === 85) {
+            handleUnderlineKeyPress(event);
+          } else if (event.keyCode === 8) {
+            handleBackspaceKeyPress(event);
           }
         }}
         onSelect={handleSelectionChange}
       />
-      {selection.start !== selection.end && (
-        <div className="navigation">
-          <button onClick={handleAddTextButtonClick}>Add Text</button>
-        </div>
-      )}
-      <div dangerouslySetInnerHTML={{ __html: htmlResult }} />
+      <pre dangerouslySetInnerHTML={{ __html: htmlResult }} />
     </div>
+    </>
   );
 }
