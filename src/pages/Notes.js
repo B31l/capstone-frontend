@@ -1,16 +1,20 @@
 import React from 'react';
 import '../main.css';
-import MarkdownViewer from '../components/MarkdownViewer';
 import NoteList from '../components/notesComponents/NoteList';
-import Whsiwhg from '../components/whsiwhg';
+import WhsiwygTitle from '../components/notesComponents/WhsiwygTitle';
+import WhsiwygBody from '../components/notesComponents/WhsiwygBody';
+import WhsiwygMenu from '../components/notesComponents/WhsiwygMenu';
 
 export default function Notes() {
   return (
-    <div className="main">
+    <div className="main ">
       <div className="note-wrapper">
         <NoteList />
-        {/* <MarkdownViewer /> */}
-        <Whsiwhg/>
+        <div className="whsiwyg-wrapper">
+          <WhsiwygTitle />
+          <WhsiwygBody />
+          <WhsiwygMenu />
+        </div>
       </div>
     </div>
   );

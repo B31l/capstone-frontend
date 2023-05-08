@@ -50,7 +50,7 @@ export default function Nav() {
             onMouseOver={() => onMouse(index)}
             onMouseOut={() => onMouse(-1)}>
             <img src={element.image} alt="my" />
-            {visibility[index] && <span>마이</span>}
+            {visibility[index] && <span>{nav_list[index].title}</span>}
           </Link>
         </div>
       ))}
