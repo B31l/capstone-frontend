@@ -238,7 +238,15 @@ section {
   height: 2rem;
   margin-top: 0.5rem;
 }
-.whsiwyg-wrapper .whsiwyg-menu .whsiwyg-menu-status {
+.whsiwyg-wrapper .whsiwyg-menu .modified {
+  float: left;
+  padding: 0 1rem;
+  height: 2rem;
+  line-height: 2rem;
+  color: #1bc628;
+  font-size: 0.75rem;
+}
+.whsiwyg-wrapper .whsiwyg-menu .last-updated {
   float: right;
   padding: 0 1rem;
   height: 2rem;
