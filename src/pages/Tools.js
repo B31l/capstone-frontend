@@ -5,6 +5,7 @@ import StudyGroup from '../components/toolsComponents/StudyGroup';
 import StudyTime from '../components/toolsComponents/StudyTime';
 import Todolist from '../components/toolsComponents/Todolist';
 import Schedule from '../components/toolsComponents/Schedule';
+import Cal from '../components/toolsComponents/calendar';
 
 export default function Tools() {
   const [userGroups] = useState(['정처기 그룹', '컴활 그룹', '컴공학부 그룹']);
@@ -22,7 +23,8 @@ export default function Tools() {
       <Goal></Goal>
       <div className="myLists">
         <StudyGroup groups={userGroups} a href></StudyGroup>
-        <Todolist></Todolist>
+        {/* <Todolist></Todolist> */}
+        <Cal></Cal>
       </div>
       <p></p>
       <Schedule></Schedule>
