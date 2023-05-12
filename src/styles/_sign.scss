@@ -36,7 +36,16 @@
     border-radius: 0.5rem;
     border: none;
     margin: 0 auto 0.75rem;
-    // border-bottom: 2px solid #ccc;
+    outline: 1px solid #ccc;
+    .social-button-link {
+        text-decoration: none;
+        color: black;
+        height: 3rem;
+        line-height: 3rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
     cursor: pointer;
     svg {
         margin: 0 14px 0 8px;

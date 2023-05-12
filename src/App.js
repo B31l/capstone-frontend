@@ -11,14 +11,23 @@ import Edit from './pages/Edit';
 import Tools from './pages/Tools';
 import NotFound from './pages/NotFound';
 
+import GoogleLogin from './pages/login/GoogleLogin';
+import KakaoLogin from './pages/login/KakaoLogin';
+import NaverLogin from './pages/login/NaverLogin';
+
 export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign" element={<Sign />} />
+
+        <Route path="/sign/google" element={<GoogleLogin />} />
+        <Route path="/sign/kakao" element={<KakaoLogin />} />
+        <Route path="/sign/naver" element={<NaverLogin />} />
+
         <Route path="/notes" element={<Notes />} />
         <Route path="/my" element={<My />} />
         <Route path="/groups" element={<Groups />} />

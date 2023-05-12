@@ -4,6 +4,7 @@
 }
 
 body {
+  max-width: 1200px;
   font-family: var(--font-NotoSans);
   margin: 0 auto;
   font-size: 16px;
@@ -14,7 +15,8 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 1rem 2.5rem;
-  height: calc(100vh - 8rem);
+  height: calc(100vh - 4rem);
+  margin-top: 4rem;
 }
 
 table {
@@ -27,20 +29,56 @@ th, td {
   text-align: center;
 }
 
+.MuiButtonBase-root {
+  color: #434C5E !important;
+}
+.MuiButtonBase-root a {
+  color: #434C5E;
+  text-decoration: none;
+}
+
+.MuiButton-contained {
+  background: #434C5E !important;
+  color: white !important;
+}
+
+.MuiAvatar-root {
+  margin-right: 1rem;
+}
+
+.profile-menu-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 4em;
   line-height: 4rem;
   padding: 0 2.5rem;
   background: white;
-  box-shadow: 0 0 2px black;
 }
-header .header-title {
-  float: left;
+header .header-in {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+header .header-in .header-title {
+  width: 15rem;
   height: 4rem;
   line-height: 4rem;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-header .header-title img {
+header .header-in .header-title img {
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;
@@ -56,7 +94,10 @@ header .header-title img {
 }
 
 .go-sign {
-  float: right;
+  width: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .home {
@@ -72,9 +113,9 @@ header .header-title img {
 
 nav {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.5rem 2.5rem;
+  height: 2.5rem;
   display: flex;
+  justify-content: center;
 }
 nav .nav-item {
   height: 2.5rem;
@@ -147,7 +188,17 @@ section {
   border-radius: 0.5rem;
   border: none;
   margin: 0 auto 0.75rem;
+  outline: 1px solid #ccc;
   cursor: pointer;
+}
+.social-button .social-button-link {
+  text-decoration: none;
+  color: black;
+  height: 3rem;
+  line-height: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 .social-button svg {
   margin: 0 14px 0 8px;
@@ -253,6 +304,23 @@ section {
   line-height: 2rem;
   color: #777;
   font-size: 0.75rem;
+}
+
+.groups-carousel {
+  display: flex;
+  height: 8em;
+  padding: 0.5rem 0;
+}
+.groups-carousel .groups-carousel-item {
+  width: 14rem;
+  height: 8rem;
+  margin-right: 1rem;
+  outline: 1px solid #ccc;
+  border-radius: 8px;
+}
+.groups-carousel .groups-carousel-item img {
+  width: 14rem;
+  height: 8rem;
 }
 
 /*# sourceMappingURL=main.css.map */

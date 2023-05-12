@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import * as React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../styles/todo.css'
+import '../../styles/todo.css';
 
-const Cal = () => {
-  const [date, setDate] = useState(new Date());
-  const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState({});
+export default function Cal() {
+  const [date, setDate] = React.useState(new Date());
+  const [inputValue, setInputValue] = React.useState('');
+  const [todos, setTodos] = React.useState({});
 
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -14,7 +14,7 @@ const Cal = () => {
   const selectedDate = `${year}-${month}-${day}`;
 
   // 날짜 변경
-  const onChange = date => {
+  const onChange = (date) => {
     setDate(date);
   };
 
@@ -33,10 +33,13 @@ const Cal = () => {
       if (!newTodos[selectedDate]) {
         newTodos[selectedDate] = [];
       }
-      newTodos[selectedDate] = [...newTodos[selectedDate], { text: inputValue, completed: false }]; // 새로운 배열을 생성해 todos 상태를 변경
+      newTodos[selectedDate] = [
+        ...newTodos[selectedDate],
+        { text: inputValue, completed: false },
+      ]; // 새로운 배열을 생성해 todos 상태를 변경
       return newTodos;
     });
-    setInputValue("");
+    setInputValue('');
   };
 
   const deleteTodo = (index) => {
@@ -58,18 +61,25 @@ const Cal = () => {
   const handleToggleTodo = (index) => {
     setTodos((prevTodos) => {
       const newTodos = { ...prevTodos };
-      newTodos[selectedDate][index].completed = !newTodos[selectedDate][index].completed;
+      newTodos[selectedDate][index].completed =
+        !newTodos[selectedDate][index].completed;
       return newTodos;
     });
   };
 
   // 캘린더 내부에 todo 개수 넣기( 내용 넣기엔 지저분할 수도 )
   const getTileContent = ({ date, view }) => {
-    const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    const [year, month, day] = [
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate(),
+    ];
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day
+      .toString()
+      .padStart(2, '0')}`;
     const todoCount = todos[formattedDate]?.length;
     if (view === 'month' && todoCount) {
-      return <p class= "dot">{todoCount}</p>;
+      return <p class="dot">{todoCount}</p>;
     }
     return null;
   };
@@ -78,7 +88,7 @@ const Cal = () => {
     <div>
       <h2>My To Do Lists</h2>
       <Calendar
-        locale="en-EN" //한국어 : "ko-KO" 
+        locale="en-EN" //한국어 : "ko-KO"
         formatDay={(locale, date) => (date, date.getDate())}
         onChange={onChange}
         tileContent={getTileContent}
@@ -95,18 +105,23 @@ const Cal = () => {
           {/* <p> TO-DO : {todos[selectedDate].length}</p> */}
           {todos[selectedDate].map((todo, index) => (
             <ul>
-            <li key={index} onDoubleClick={() =>doubleClickTodo(index)}>
-                <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-                <input type="checkbox" checked={todo.completed} onChange={() => handleToggleTodo(index)}/>
-                {todo.text}
+              <li key={index} onDoubleClick={() => doubleClickTodo(index)}>
+                <span
+                  style={{
+                    textDecoration: todo.completed ? 'line-through' : 'none',
+                  }}>
+                  <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => handleToggleTodo(index)}
+                  />
+                  {todo.text}
                 </span>
-            </li>
+              </li>
             </ul>
-        ))}
+          ))}
         </div>
       )}
     </div>
   );
-};
-
-export default Cal;
+}

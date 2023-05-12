@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 const social_map = {
   google: {
@@ -49,20 +50,25 @@ const social_map = {
       en: 'Naver',
     },
     background: '#00C301',
-    path: [['M9.6 4.95V5H4V19H9.6V12.3L14.4 19H20V5H14.4V11.4346L9.6 4.95Z', '#FFF']],
+    path: [
+      ['M9.6 4.95V5H4V19H9.6V12.3L14.4 19H20V5H14.4V11.4346L9.6 4.95Z', '#FFF'],
+    ],
   },
 };
 
 export default function SocialButton({ social }) {
   return (
-    <button className="social-button" style={{ background: social_map[social].background }}>
-      <svg width="24" height="24">
-        {social_map[social].path.map((element) => (
-          <path d={element[0]} fill={element[1]} />
-        ))}
-        {/* <path d={social_map[social].path} /> */}
-      </svg>
-      <span>{social_map[social].title.en}</span>
+    <button
+      className="social-button"
+      style={{ background: social_map[social].background }}>
+      <Link className="social-button-link" to={'/sign/' + social}>
+        <svg width="24" height="24">
+          {social_map[social].path.map((element) => (
+            <path d={element[0]} fill={element[1]} />
+          ))}
+        </svg>
+        <span>{social_map[social].title.en}</span>
+      </Link>
     </button>
   );
 }

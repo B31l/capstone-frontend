@@ -1,10 +1,12 @@
 import React from 'react';
 import '../main.css';
 
+import Profile from '../components/toolsComponents/Profile';
+
 export default function My() {
   return (
     <div className="main">
-      <p>개인 정보</p>
+      <Profile></Profile>
     </div>
   );
 }

@@ -6,6 +6,6 @@ module.exports = {
   semi: true,
   useTabs: false,
   tabWidth: 2,
-  printWidth: 120,
+  printWidth: 80,
   arrowParens: 'always',
 };
