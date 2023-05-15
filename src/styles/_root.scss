@@ -2,12 +2,17 @@
     box-sizing: border-box;
 }
 
+:root {
+    --background-root: #EBECED;
+    --background-button: #434C5E;
+}
+
 body {
     max-width: 1200px;
     font-family: var(--font-NotoSans);
     margin: 0 auto;
     font-size: 16px;
-    background: #fafafa;
+    background: var(--background-root)
 }
 
 .main {

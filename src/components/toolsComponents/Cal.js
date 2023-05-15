@@ -33,10 +33,7 @@ export default function Cal() {
       if (!newTodos[selectedDate]) {
         newTodos[selectedDate] = [];
       }
-      newTodos[selectedDate] = [
-        ...newTodos[selectedDate],
-        { text: inputValue, completed: false },
-      ]; // 새로운 배열을 생성해 todos 상태를 변경
+      newTodos[selectedDate] = [...newTodos[selectedDate], { text: inputValue, completed: false }]; // 새로운 배열을 생성해 todos 상태를 변경
       return newTodos;
     });
     setInputValue('');
@@ -61,19 +58,14 @@ export default function Cal() {
   const handleToggleTodo = (index) => {
     setTodos((prevTodos) => {
       const newTodos = { ...prevTodos };
-      newTodos[selectedDate][index].completed =
-        !newTodos[selectedDate][index].completed;
+      newTodos[selectedDate][index].completed = !newTodos[selectedDate][index].completed;
       return newTodos;
     });
   };
 
   // 캘린더 내부에 todo 개수 넣기( 내용 넣기엔 지저분할 수도 )
   const getTileContent = ({ date, view }) => {
-    const [year, month, day] = [
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
-    ];
+    const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day
       .toString()
       .padStart(2, '0')}`;

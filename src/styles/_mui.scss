@@ -1,13 +1,13 @@
 .MuiButtonBase-root {
     // padding: 1rem !important;
-    color: #434C5E !important;
+    color: var(--background-button) !important;
     a {
-        color: #434C5E;
+        color: black;
         text-decoration: none;
     }
 }
 .MuiButton-contained {
-    background: #434C5E !important;
+    background: var(--background-button) !important;
     color: white !important;
 }
 .MuiAvatar-root {
@@ -17,4 +17,14 @@
     width: 100%;
     display: flex;
     align-items: center;
+}
+.MuiListItemButton-root {
+    padding: 0 !important;
+}
+
+.margin-zero {
+    margin: 0 !important;
+}
+.padding-zero {
+    padding: 0 !important;
 }
