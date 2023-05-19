@@ -6,17 +6,31 @@ import ReactDOM from 'react-dom';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/i18n/ko-kr';
 
+// 색상변환버튼 관련
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-import chart from '@toast-ui/editor-plugin-chart';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 
-import createYoutubePopup from './createYoutubePopup.js';
+// 차트 입력 관련
+import chart from '@toast-ui/editor-plugin-chart';
 
+// 코드블럭 관련
+import 'highlight.js/styles/github.css';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight-all.js';
+import 'prismjs/themes/prism.css';
+import Prism from 'prismjs';
+
+// 유튜브 버튼 관련
+import createYoutubePopup from './createYoutubePopup.js';
+import iframe from './Iframe.js';
+
+// uml 관련
+import uml from '@toast-ui/editor-plugin-uml';
 
 export default function WhsiwygBody({ content = '' }) {
 
   const editorRef = useRef();
+  // const [inputValue, setInputValue] = useState('');
 
   const myCustomEl = document.createElement('span');
   myCustomEl.style = 'cursor: pointer;'
@@ -24,12 +38,12 @@ export default function WhsiwygBody({ content = '' }) {
   const icon = <TfiYoutube size={32} />;
   ReactDOM.render(icon, myCustomEl);
   const youtubePopup = createYoutubePopup(editorRef);
-
-
+  
   return (
     <div className="whsiwyg-body">
       <Editor
-        placeholder={content || '노트의 내용을 입력하세요'}
+      //code블럭 입력이 되지 않아 일단 주석처리 해뒀습니다.
+        // placeholder={content || '노트의 내용을 입력하세요'}
         previewStyle="vertical"
         height="100%"
         initialEditType="wysiwyg"
@@ -38,7 +52,7 @@ export default function WhsiwygBody({ content = '' }) {
         ref={editorRef}
         // plugins 주석처리시 ResizeObserver loop limit exceeded 오류 없어짐
         // 무시 가능
-        plugins={[colorSyntax, chart ]}
+        plugins={[colorSyntax, chart,  [codeSyntaxHighlight, { highlighter: Prism }], uml]}
         toolbarItems={[
           ['heading', 'bold', 'italic', 'strike'],
           ['hr', 'quote'],
@@ -56,23 +70,10 @@ export default function WhsiwygBody({ content = '' }) {
                 }
           }]
       ]}
-
       customHTMLRenderer={{
-        htmlBlock: {
-          iframe(node) {
-            return [
-              {
-                type: "openTag",
-                tagName: "iframe",
-                outerNewLine: true,
-                attributes: node.attrs,
-              },
-              { type: "html", content: node.childrenHTML },
-              { type: "closeTag", tagName: "iframe", outerNewLine: false }
-            ];
-        }}
+        htmlBlock: {iframe}
       }}
-        
+   
       />
     </div>
   );
