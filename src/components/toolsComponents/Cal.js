@@ -1,17 +1,18 @@
 import * as React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../styles/todo.css';
+import '../../styles/todo.css'
+import dayjs from 'dayjs';
+import TextField from '@mui/material/TextField';
+import { Checkbox, Button, Box } from '@mui/material';
+
 
 export default function Cal() {
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState(dayjs());
   const [inputValue, setInputValue] = React.useState('');
   const [todos, setTodos] = React.useState({});
 
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const selectedDate = `${year}-${month}-${day}`;
+  const selectedDate = dayjs(date).format('YYYY-MM-DD');
 
   // 날짜 변경
   const onChange = (date) => {
@@ -33,7 +34,10 @@ export default function Cal() {
       if (!newTodos[selectedDate]) {
         newTodos[selectedDate] = [];
       }
-      newTodos[selectedDate] = [...newTodos[selectedDate], { text: inputValue, completed: false }]; // 새로운 배열을 생성해 todos 상태를 변경
+      newTodos[selectedDate] = [
+        ...newTodos[selectedDate],
+        { text: inputValue, completed: false },
+      ]; // 새로운 배열을 생성해 todos 상태를 변경
       return newTodos;
     });
     setInputValue('');
@@ -58,17 +62,15 @@ export default function Cal() {
   const handleToggleTodo = (index) => {
     setTodos((prevTodos) => {
       const newTodos = { ...prevTodos };
-      newTodos[selectedDate][index].completed = !newTodos[selectedDate][index].completed;
+      newTodos[selectedDate][index].completed =
+        !newTodos[selectedDate][index].completed;
       return newTodos;
     });
   };
 
   // 캘린더 내부에 todo 개수 넣기( 내용 넣기엔 지저분할 수도 )
   const getTileContent = ({ date, view }) => {
-    const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day
-      .toString()
-      .padStart(2, '0')}`;
+    const formattedDate = dayjs(date).format('YYYY-MM-DD');
     const todoCount = todos[formattedDate]?.length;
     if (view === 'month' && todoCount) {
       return <p class="dot">{todoCount}</p>;
@@ -77,43 +79,41 @@ export default function Cal() {
   };
 
   return (
-    <div>
+    <div style={{margin:'23px'}}>
       <h2>My To Do Lists</h2>
+      <div style={{display: 'flex'}}>
       <Calendar
         locale="en-EN" //한국어 : "ko-KO"
-        formatDay={(locale, date) => (date, date.getDate())}
         onChange={onChange}
         tileContent={getTileContent}
         value={date}
         calendarType="US"
       />
       {/* 캘린더 아래 내용 */}
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button onClick={handleAddTodo}>Add Todo</button>
-      <div className="selected-date">{selectedDate}</div>
+      <div style={{marginLeft:'23px'}}>
+      <TextField value={inputValue} onChange={handleInputChange} label="To-Do" variant="standard" size='small'/>
+      <Button onClick={handleAddTodo} style={{margin: '10px'}}>Add Todo</Button>
+      
       {todos[selectedDate] && (
         <div>
-          {/* 길이 표현은 달력에 있어 굳이 표현? */}
-          {/* <p> TO-DO : {todos[selectedDate].length}</p> */}
           {todos[selectedDate].map((todo, index) => (
-            <ul>
-              <li key={index} onDoubleClick={() => doubleClickTodo(index)}>
+              <li key={index} onDoubleClick={() => doubleClickTodo(index)} style={{listStyle : 'none'}}>
                 <span
                   style={{
                     textDecoration: todo.completed ? 'line-through' : 'none',
                   }}>
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={todo.completed}
                     onChange={() => handleToggleTodo(index)}
                   />
                   {todo.text}
                 </span>
               </li>
-            </ul>
           ))}
         </div>
       )}
+    </div>
+    </div>
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function WhsiwygBody({ content = '' }) {
         // placeholder={content || '노트의 내용을 입력하세요'}
         previewStyle="vertical"
         height="100%"
-        initialEditType="wysiwyg"
+        initialEditType="markdown"
         useCommandShortcut={true}
         language="ko"
         ref={editorRef}
@@ -68,7 +68,8 @@ export default function WhsiwygBody({ content = '' }) {
                   body: youtubePopup,
                   style: { width: 'auto' },
                 }
-          }]
+          }],
+          ['link']
       ]}
       customHTMLRenderer={{
         htmlBlock: {iframe}

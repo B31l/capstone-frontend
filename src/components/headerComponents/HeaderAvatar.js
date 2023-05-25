@@ -74,9 +74,9 @@ export default function HeaderAvatar({ username = false }) {
         transformOrigin={{ horizontal: 'left', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}>
         <MenuItem onClick={menuClose}>
-          <Link to="/my" className="profile-menu-link">
+          <Link to="/tools" className="profile-menu-link">
             <Avatar />
-            프로필
+            마이페이지
           </Link>
         </MenuItem>
         <Divider />
