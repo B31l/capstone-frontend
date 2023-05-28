@@ -50,18 +50,20 @@ const social_map = {
       en: 'Naver',
     },
     background: '#00C301',
-    path: [
-      ['M9.6 4.95V5H4V19H9.6V12.3L14.4 19H20V5H14.4V11.4346L9.6 4.95Z', '#FFF'],
-    ],
+    path: [['M9.6 4.95V5H4V19H9.6V12.3L14.4 19H20V5H14.4V11.4346L9.6 4.95Z', '#FFF']],
   },
 };
 
 export default function SocialButton({ social }) {
+  const REST_API_KEY = '50e0a36d16e7640df3908f7f6406099c';
+  const REDIRECT_URI = 'http://localhost:3000/oauth/kakao/callback';
+  // const KAKAO_AUTH_URL =
+  const URL = {
+    kakao: `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`,
+  };
   return (
-    <button
-      className="social-button"
-      style={{ background: social_map[social].background }}>
-      <Link className="social-button-link" to={'/sign/' + social}>
+    <button className="social-button" style={{ background: social_map[social].background }}>
+      <Link className="social-button-link" to={URL[social]}>
         <svg width="24" height="24">
           {social_map[social].path.map((element) => (
             <path d={element[0]} fill={element[1]} />
