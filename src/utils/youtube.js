@@ -1,11 +1,9 @@
-function createYoutubePopup(editorRef) {
+export const createYoutubePopup = (editorRef) => {
   const container = document.createElement('div');
   const description = document.createElement('p');
   description.textContent = 'Youtube 주소를 입력하고 Enter를 누르세요!';
-
   const urlInput = document.createElement('input');
   urlInput.style.width = '100%';
-
   urlInput.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
       if (
@@ -27,7 +25,18 @@ function createYoutubePopup(editorRef) {
   });
   container.appendChild(description);
   container.appendChild(urlInput);
-
   return container;
-}
-export default createYoutubePopup;
+};
+
+export const iframe = (node) => {
+  return [
+    {
+      type: 'openTag',
+      tagName: 'iframe',
+      outerNewLine: true,
+      attributes: node.attrs,
+    },
+    { type: 'html', content: node.childrenHTML },
+    { type: 'closeTag', tagName: 'iframe', outerNewLine: false },
+  ];
+};

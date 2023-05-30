@@ -8,7 +8,6 @@ import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import HeaderDrawer from './HeaderDrawer';
 import HeaderTools from './HeaderTools';
 import HeaderSign from './HeaderSign';
-import HeaderAvatar from './HeaderAvatar';
 
 export default function Header() {
   return (
@@ -35,7 +34,6 @@ export default function Header() {
           </ButtonGroup>
         </div>
         <div className="header-right">
-          <HeaderAvatar />
           <HeaderSign />
         </div>
       </div>

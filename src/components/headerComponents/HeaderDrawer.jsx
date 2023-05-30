@@ -1,31 +1,14 @@
 import * as React from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  Drawer,
-  Divider,
-  IconButton,
-  List,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Stack,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import TableRowsIcon from '@mui/icons-material/TableRows';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
+import HeaderSign from './HeaderSign';
 
+import { Box, Button, Drawer, Divider, IconButton, List, Stack } from '@mui/material';
+import TableRowsIcon from '@mui/icons-material/TableRows';
 import AddIcon from '@mui/icons-material/Add';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import CoPresentOutlinedIcon from '@mui/icons-material/CoPresentOutlined';
 import HeaderDrawerListItem from './HeaderDrawerListItem';
-import { Link } from 'react-router-dom';
-import HeaderAvatar from './HeaderAvatar';
 
 export default function HeaderDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -35,18 +18,10 @@ export default function HeaderDrawer() {
   const drawerClose = () => {
     setOpen(false);
   };
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isAnchorEl = Boolean(anchorEl);
-  const menuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const menuClose = () => {
-    setAnchorEl(null);
-  };
   const list = (
     <Stack sx={{ height: '100vh', justifyContent: 'space-between' }}>
       <Stack>
-        <HeaderAvatar username />
+        <HeaderSign username />
         <Divider />
         <Box
           sx={{ width: '15rem' }}

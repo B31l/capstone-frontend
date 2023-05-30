@@ -21,7 +21,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      {/* <Nav /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign" element={<Sign />} />
@@ -35,9 +34,9 @@ export default function App() {
         <Route path="/groups" element={<Groups />} />
         <Route path="/tools" element={<Tools />} />
         <Route path="/edit" element={<Edit />} />
-        <Route path="*" element={<NotFound />} />
 
-        <Route path="/profile/:uid" element={<Profile />} />
+        <Route path="/:uid" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
 
         <Route path="/oauth/kakao/callback" element={<Auth />} />
       </Routes>

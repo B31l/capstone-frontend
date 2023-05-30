@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Auth() {
   const REST_API_KEY = '50e0a36d16e7640df3908f7f6406099c';
   const REDIRECT_URI = 'http://localhost:3000/oauth/kakao/callback';
-  // const CLIENT_SECRET = 'HUElKQSXVLvRyjh5TioFFzYMemG2i37q';
+  const CLIENT_SECRET = 'HUElKQSXVLvRyjh5TioFFzYMemG2i37q';
   const code = new URL(window.location.href).searchParams.get('code'); // calllback으로 받은 인가코드
   const navigate = useNavigate();
   const [user, setUser] = React.useState('');
@@ -17,7 +17,7 @@ export default function Auth() {
       client_id: REST_API_KEY,
       redirect_uri: REDIRECT_URI,
       code: code,
-      // client_secret: CLIENT_SECRET,
+      client_secret: CLIENT_SECRET,
     });
     try {
       const res = await axios.post('https://kauth.kakao.com/oauth/token', payload); // access token 가져오기
@@ -31,8 +31,8 @@ export default function Auth() {
         console.log(res.data);
         setUser(res.data);
       });
-      // console.log('user', user);
-      // navigate(`/profile/${user.uid}`, { replace: true, state: { user: user } });
+      console.log('user', user);
+      navigate(`/${user.uid}`, { replace: true, state: { user: user } });
     } catch (err) {
       console.log(err);
     }
