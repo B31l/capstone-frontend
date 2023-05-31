@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { marked } from 'marked';
 import '../styles/Mviewer.css';
 
@@ -15,11 +15,11 @@ import {
   ItalicKeyHandler,
   TabKeyHandler,
   UnderlineKeyHandler,
-} from '../utils/whsiwyg';
+} from '../../utils/whsiwyg';
 
 export default function MarkdownViewer() {
-  const [markdownText, setMarkdownText] = useState('');
-  const [selection, setSelection] = useState({
+  const [markdownText, setMarkdownText] = React.useState('');
+  const [selection, setSelection] = React.useState({
     start: 0,
     end: 0,
   });

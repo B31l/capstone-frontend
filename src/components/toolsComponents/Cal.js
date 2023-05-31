@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../styles/todo.css'
+import '../../styles/todo.css';
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
-import { Checkbox, Button, Box } from '@mui/material';
-
+import { Button, Checkbox } from '@mui/material';
 
 export default function Cal() {
   const [date, setDate] = React.useState(dayjs());
@@ -34,10 +33,7 @@ export default function Cal() {
       if (!newTodos[selectedDate]) {
         newTodos[selectedDate] = [];
       }
-      newTodos[selectedDate] = [
-        ...newTodos[selectedDate],
-        { text: inputValue, completed: false },
-      ]; // 새로운 배열을 생성해 todos 상태를 변경
+      newTodos[selectedDate] = [...newTodos[selectedDate], { text: inputValue, completed: false }]; // 새로운 배열을 생성해 todos 상태를 변경
       return newTodos;
     });
     setInputValue('');
@@ -62,8 +58,7 @@ export default function Cal() {
   const handleToggleTodo = (index) => {
     setTodos((prevTodos) => {
       const newTodos = { ...prevTodos };
-      newTodos[selectedDate][index].completed =
-        !newTodos[selectedDate][index].completed;
+      newTodos[selectedDate][index].completed = !newTodos[selectedDate][index].completed;
       return newTodos;
     });
   };
@@ -79,41 +74,49 @@ export default function Cal() {
   };
 
   return (
-    <div style={{margin:'23px'}}>
+    <div style={{ margin: '23px' }}>
       <h2>My To Do Lists</h2>
-      <div style={{display: 'flex'}}>
-      <Calendar
-        locale="en-EN" //한국어 : "ko-KO"
-        onChange={onChange}
-        tileContent={getTileContent}
-        value={date}
-        calendarType="US"
-      />
-      {/* 캘린더 아래 내용 */}
-      <div style={{marginLeft:'23px'}}>
-      <TextField value={inputValue} onChange={handleInputChange} label="To-Do" variant="standard" size='small'/>
-      <Button onClick={handleAddTodo} style={{margin: '10px'}}>Add Todo</Button>
-      
-      {todos[selectedDate] && (
-        <div>
-          {todos[selectedDate].map((todo, index) => (
-              <li key={index} onDoubleClick={() => doubleClickTodo(index)} style={{listStyle : 'none'}}>
-                <span
-                  style={{
-                    textDecoration: todo.completed ? 'line-through' : 'none',
-                  }}>
-                  <Checkbox
-                    checked={todo.completed}
-                    onChange={() => handleToggleTodo(index)}
-                  />
-                  {todo.text}
-                </span>
-              </li>
-          ))}
+      <div style={{ display: 'flex' }}>
+        <Calendar
+          locale="en-EN" //한국어 : "ko-KO"
+          onChange={onChange}
+          tileContent={getTileContent}
+          value={date}
+          calendarType="US"
+        />
+        {/* 캘린더 아래 내용 */}
+        <div style={{ marginLeft: '23px' }}>
+          <TextField
+            value={inputValue}
+            onChange={handleInputChange}
+            label="To-Do"
+            variant="standard"
+            size="small"
+          />
+          <Button onClick={handleAddTodo} style={{ margin: '10px' }}>
+            Add Todo
+          </Button>
+
+          {todos[selectedDate] && (
+            <div>
+              {todos[selectedDate].map((todo, index) => (
+                <li
+                  key={index}
+                  onDoubleClick={() => doubleClickTodo(index)}
+                  style={{ listStyle: 'none' }}>
+                  <span
+                    style={{
+                      textDecoration: todo.completed ? 'line-through' : 'none',
+                    }}>
+                    <Checkbox checked={todo.completed} onChange={() => handleToggleTodo(index)} />
+                    {todo.text}
+                  </span>
+                </li>
+              ))}
+            </div>
+          )}
         </div>
-      )}
-    </div>
-    </div>
+      </div>
     </div>
   );
 }

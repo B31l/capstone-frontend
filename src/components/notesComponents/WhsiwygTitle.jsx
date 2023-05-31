@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Editor } from '@toast-ui/react-editor';
+// import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 export default function WhsiwygTitle() {

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import '../main.css';
-import SignInput from '../components/signComponents/SignInput';
 import SocialButton from '../components/signComponents/SocialButton';
 
 export default function Sign() {
