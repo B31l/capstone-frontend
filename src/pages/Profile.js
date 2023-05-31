@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import ProfileLeft from '../components/profileComponents/ProfileLeft';
+import ProfileRight from '../components/profileComponents/ProfileRight';
+
 export default function Profile() {
   let { user } = useParams();
   // const [user, setUser] = React.useState();
@@ -26,8 +29,9 @@ export default function Profile() {
   console.log('uid', user);
 
   return (
-    <div className="main">
-      <p>{user}</p>
+    <div style={{ display: 'flex' }}>
+      <ProfileLeft />
+      <ProfileRight />
     </div>
   );
 }

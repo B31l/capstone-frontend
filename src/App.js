@@ -21,25 +21,27 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign" element={<Sign />} />
+      <div className="main">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign" element={<Sign />} />
 
-        <Route path="/sign/google" element={<GoogleLogin />} />
-        <Route path="/sign/kakao" element={<KakaoLogin />} />
-        <Route path="/sign/naver" element={<NaverLogin />} />
+          <Route path="/sign/google" element={<GoogleLogin />} />
+          <Route path="/sign/kakao" element={<KakaoLogin />} />
+          <Route path="/sign/naver" element={<NaverLogin />} />
 
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/my" element={<My />} />
-        <Route path="/groups" element={<Groups />} />
-        <Route path="/tools" element={<Tools />} />
-        <Route path="/edit" element={<Edit />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/my" element={<My />} />
+          <Route path="/groups" element={<Groups />} />
+          <Route path="/tools" element={<Tools />} />
+          <Route path="/edit" element={<Edit />} />
 
-        <Route path="/:uid" element={<Profile />} />
-        <Route path="*" element={<NotFound />} />
+          <Route path="/:uid" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
 
-        <Route path="/oauth/kakao/callback" element={<Auth />} />
-      </Routes>
+          <Route path="/oauth/kakao/callback" element={<Auth />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

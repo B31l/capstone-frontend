@@ -406,4 +406,10 @@ section {
   height: 8rem;
 }
 
+.profile-avatar {
+  width: 15rem !important;
+  height: 15rem !important;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=main.css.map */

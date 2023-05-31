@@ -4,7 +4,7 @@ import SocialButton from '../components/signComponents/SocialButton';
 
 export default function Sign() {
   return (
-    <div className="main">
+    <>
       <h1>로그인</h1>
       <div className="sign">
         <div className="sign-section">
@@ -13,6 +13,6 @@ export default function Sign() {
           <SocialButton social="naver" />
         </div>
       </div>
-    </div>
+    </>
   );
 }
