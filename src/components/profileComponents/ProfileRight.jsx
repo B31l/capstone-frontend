@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import StudyTime from '../toolsComponents/StudyTime';
-import Schedule from '../toolsComponents/Schedule';
+import Schedule from '../toolsComponents/schedulecomponents/Schedule';
 
 export default function ProfileRight() {
   const [userStudyTime] = React.useState(120);

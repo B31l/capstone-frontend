@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Goal from '../components/toolsComponents/Goal';
 import StudyTime from '../components/toolsComponents/StudyTime';
-import Schedule from '../components/toolsComponents/Schedule';
+import Schedule from '../components/toolsComponents/schedulecomponents/Schedule';
 import Cal from '../components/toolsComponents/Cal';
 export default function Tools() {
   const [userStudyTime] = useState(120);
