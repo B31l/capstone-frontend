@@ -42,8 +42,8 @@ export default class Schedule extends React.PureComponent {
       addedAppointment: {}, // 추가되는 약속
       isNewAppointment: false, // 새로운 약속이 추가되었는가
       //하루의 시작과 끝 시간
-      startDayHour: 5,
-      endDayHour: 25,
+      startDayHour: 0,
+      endDayHour: 24,
     };
 
     // 삭제 확인 대화상자 가시성, 일정 삭제 업데이트 토글, 일정 수정 화면 가시성

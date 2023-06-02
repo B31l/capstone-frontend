@@ -6,7 +6,8 @@ import ProfileLeft from '../components/profileComponents/ProfileLeft';
 import ProfileRight from '../components/profileComponents/ProfileRight';
 
 export default function Profile() {
-  let { user } = useParams();
+  let { name, uid, info } = useParams();
+  console.log(name);
   // const [user, setUser] = React.useState();
 
   // const getUser = async () => {
@@ -26,12 +27,12 @@ export default function Profile() {
   //     console.log(user);
   //   });
   // }, []);
-  console.log('uid는요', user);
-
   return (
     <div style={{ display: 'flex' }}>
-      <ProfileLeft />
+      <ProfileLeft name={name} uid={uid} info={info} />
       <ProfileRight />
     </div>
   );
 }
+
+// 쿼리스트링으로 axios 에러 해결하기

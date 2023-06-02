@@ -2,7 +2,7 @@ import * as React from 'react';
 import '../../main.css';
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
-export default function ProfileLeft() {
+export default function ProfileLeft({ name, uid, info }) {
   return (
     <Card sx={{ width: 360, maxHeight: 400, marginRight: '16px' }}>
       <CardMedia
@@ -12,11 +12,11 @@ export default function ProfileLeft() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          user.name
+          {name}: {uid}
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
-          user.info 주저리주저리
+          {info}
         </Typography>
       </CardContent>
       <CardActions>

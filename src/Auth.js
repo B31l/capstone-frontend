@@ -27,8 +27,22 @@ export default function Auth() {
       });
       const kakao_email = kakao.kakao_account.email;
       const user = await axios.get(`http://localhost:8000/users/ube/${kakao_email}?social=kakao`);
-      console.log(user.data.uid);
-      navigate(`/${user.data.uid}`, { replace: true, state: { user: user } });
+      console.log(user.data.name);
+      navigate(
+        `/${user.data.uid}`,
+        { replace: true },
+        {
+          state: {
+            name: user.data.name,
+            uid: user.data.uid,
+            info: user.data.info,
+            email: user.data.email,
+            notes: user.data.notes,
+            social: user.data.social,
+            schedules: user.data.schedules,
+          },
+        },
+      );
     } catch (err) {
       console.log(err);
     }
