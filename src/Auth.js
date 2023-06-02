@@ -9,7 +9,6 @@ export default function Auth() {
   const CLIENT_SECRET = 'HUElKQSXVLvRyjh5TioFFzYMemG2i37q';
   const code = new URL(window.location.href).searchParams.get('code'); // calllback으로 받은 인가코드
   const navigate = useNavigate();
-  const [user, setUser] = React.useState('');
 
   const getToken = async () => {
     const payload = qs.stringify({
@@ -27,12 +26,9 @@ export default function Auth() {
         url: '/v2/user/me', // Kakao SDK API를 이용해 사용자 정보 획득
       });
       const kakao_email = kakao.kakao_account.email;
-      await axios.get(`http://localhost:8000/users/ube/${kakao_email}?social=kakao`).then((res) => {
-        console.log(res.data);
-        setUser(res.data);
-      });
-      console.log('user', user);
-      navigate(`/${user.uid}`, { replace: true, state: { user: user } });
+      const user = await axios.get(`http://localhost:8000/users/ube/${kakao_email}?social=kakao`);
+      console.log(user.data.uid);
+      navigate(`/${user.data.uid}`, { replace: true, state: { user: user } });
     } catch (err) {
       console.log(err);
     }

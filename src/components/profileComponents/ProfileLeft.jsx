@@ -1,15 +1,6 @@
 import * as React from 'react';
 import '../../main.css';
-
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 export default function ProfileLeft() {
   return (

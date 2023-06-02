@@ -26,7 +26,7 @@ export default function Profile() {
   //     console.log(user);
   //   });
   // }, []);
-  console.log('uid', user);
+  console.log('uid는요', user);
 
   return (
     <div style={{ display: 'flex' }}>

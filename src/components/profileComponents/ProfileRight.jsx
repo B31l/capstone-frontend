@@ -23,8 +23,8 @@ export default function ProfileRight() {
   return (
     <div style={{ width: '720px' }}>
       <Schedule></Schedule>
-      <StudyTime studyTime={userStudyTime}></StudyTime>
-      <button onClick={MoveToEdit}>수정</button>
+      {/* <StudyTime studyTime={userStudyTime}></StudyTime>
+      <button onClick={MoveToEdit}>수정</button> */}
     </div>
   );
 }

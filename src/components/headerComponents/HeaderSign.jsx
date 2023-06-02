@@ -31,7 +31,7 @@ const style = {
 };
 
 export default function HeaderSign({ username = false }) {
-  const [isSigned, setSigned] = React.useState(true); // 유저 상태는 Redux / Context로 업데이트
+  const [isSigned, setSigned] = React.useState(false); // 유저 상태는 Redux / Context로 업데이트
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const modalOpen = () => setOpen(true);
