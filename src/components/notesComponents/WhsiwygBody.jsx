@@ -68,7 +68,6 @@ export default function WhsiwygBody({ content = '' }) {
               },
             },
           ],
-          ['link'],
         ]}
         customHTMLRenderer={{
           htmlBlock: { iframe },

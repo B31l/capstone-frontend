@@ -161,7 +161,7 @@ export default class Schedule extends React.PureComponent {
 
     return (
       <Paper>
-        <Scheduler data={data} height="100%">
+        <Scheduler data={data} height="100%" >
           <ViewState currentDate={currentDate} />
           <EditingState
             onCommitChanges={this.commitChanges}
